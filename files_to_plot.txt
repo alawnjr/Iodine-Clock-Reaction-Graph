@@ -1,0 +1,10 @@
+# List the CSV files you want to plot (one per line)
+# Lines starting with # are comments and will be ignored
+# Example:
+# color_data_20251010_153420.csv
+
+# Uncomment the files you want to plot:
+color_data_20251010_163129.csv 
+#(distance between light and sensor is 9.5 cm.)
+#when we decreased the distance form 9.5 to 5cm, R changed from 27 to ~90
+
