@@ -42,12 +42,10 @@ def plot_color_data(csv_files):
             # Plot each color channel in its own subplot
             for idx, color_channel in enumerate(colors_to_plot):
                 if color_channel in df.columns:
-                    axes_flat[idx].plot(df['Time (s)'], df[color_channel], 
-                                       label=filename, 
-                                       marker='o' if len(df) < 50 else '',
-                                       markersize=3,
-                                       linewidth=1.5,
-                                       alpha=0.7)
+                    axes_flat[idx].scatter(df['Time (s)'], df[color_channel], 
+                                          label=filename, 
+                                          s=20,
+                                          alpha=0.7)
             
             print(f"Plotted: {filename} ({len(df)} data points)")
             
@@ -75,13 +73,13 @@ def plot_color_data(csv_files):
 
 def plot_combined_rgb(csv_files):
     """
-    Create an additional plot showing all RGB values on the same graph
+    Create an additional plot showing all RGB and Clear values on the same graph
     """
     if not csv_files:
         return
     
     fig, ax = plt.subplots(figsize=(15, 6))
-    fig.suptitle('RGB Values Combined', fontsize=16, fontweight='bold')
+    fig.suptitle('RGB + Clear Values Combined', fontsize=16, fontweight='bold')
     
     for csv_file in csv_files:
         try:
@@ -91,10 +89,11 @@ def plot_combined_rgb(csv_files):
             
             filename = os.path.basename(csv_file)
             
-            # Plot R, G, B on same axis
-            ax.plot(df['Time (s)'], df['R'], 'r-', label=f'{filename} - Red', alpha=0.7, linewidth=1.5)
-            ax.plot(df['Time (s)'], df['G'], 'g-', label=f'{filename} - Green', alpha=0.7, linewidth=1.5)
-            ax.plot(df['Time (s)'], df['B'], 'b-', label=f'{filename} - Blue', alpha=0.7, linewidth=1.5)
+            # Plot R, G, B, C on same axis
+            ax.scatter(df['Time (s)'], df['R'], c='red', label=f'{filename} - Red', alpha=0.7, s=20)
+            ax.scatter(df['Time (s)'], df['G'], c='green', label=f'{filename} - Green', alpha=0.7, s=20)
+            ax.scatter(df['Time (s)'], df['B'], c='blue', label=f'{filename} - Blue', alpha=0.7, s=20)
+            ax.scatter(df['Time (s)'], df['C'], c='purple', label=f'{filename} - Clear', alpha=0.7, s=20)
             
         except Exception as e:
             print(f"Error in combined plot for {csv_file}: {e}")
@@ -109,7 +108,7 @@ def plot_combined_rgb(csv_files):
     # Save the combined plot
     output_filename = f"rgb_combined_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
     plt.savefig(output_filename, dpi=300, bbox_inches='tight')
-    print(f"Combined RGB plot saved as: {output_filename}")
+    print(f"Combined RGB + Clear plot saved as: {output_filename}")
     
     plt.show()
 
