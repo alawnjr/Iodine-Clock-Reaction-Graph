@@ -11,8 +11,12 @@ void setup() {
   }
 
   apds.enableColor(true);
+  apds.enableProximity(false);
+  apds.enableGesture(false);
+  // integration time in milliseconds
+  apds.setADCIntegrationTime(150);
+  apds.setADCGain(APDS9960_AGAIN_16X);
 
-  // ✅ First line MUST be the header
   Serial.println("Red Green Blue Clear");
 }
 
@@ -31,5 +35,5 @@ void loop() {
   Serial.print(b); Serial.print(" ");
   Serial.println(c);
 
-  delay(100);
+  delay(200);
 }
