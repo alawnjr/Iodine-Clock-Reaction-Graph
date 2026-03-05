@@ -48,7 +48,11 @@ def detect_pour_in(df, channel='C', window_size=10, threshold_factor=3.0):
     
     # Smooth the data to reduce noise
     values = df[channel].values
-    smoothed = pd.Series(values).rolling(window=window_size, center=True).mean().fillna(values)
+    smoothed_series = pd.Series(values).rolling(window=window_size, center=True).mean()
+    # Fill NaN values using forward fill then backward fill
+    smoothed = smoothed_series.ffill().bfill()
+    # Convert to numpy array for gradient calculation
+    smoothed = smoothed.values
     
     # Calculate first derivative (rate of change)
     derivative = np.gradient(smoothed)

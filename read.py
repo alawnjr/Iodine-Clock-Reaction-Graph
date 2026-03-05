@@ -6,7 +6,7 @@ import os
 import matplotlib.pyplot as plt
 
 # Configuration
-SERIAL_PORT = 'COM3'  # Change this to your Arduino's port (e.g., COM3, COM4, /dev/ttyUSB0, etc.)
+SERIAL_PORT = '/dev/ttyACM0'  # Change this to your Arduino's port (e.g., COM3, COM4, /dev/ttyUSB0, etc.)
 BAUD_RATE = 115200      # Make sure this matches your Arduino's baud rate
 TIMEOUT = 1           # Serial timeout in seconds
 UPDATE_INTERVAL = 5   # Update graph every N data points
