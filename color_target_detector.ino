@@ -112,6 +112,15 @@ void loop() {
   }
   #endif
 
+
+  //only stop if c value is low and at least 5 seconds have passed
+
+  if (c < 1000 && millis() - startTime > 5000) {
+    digitalWrite(RELAY_PIN, LOW);
+  }
+
+
+
   // Debounce: require consecutive readings above the target
   // if (c >= targetClearValue) {
   //   consecutiveHits++;

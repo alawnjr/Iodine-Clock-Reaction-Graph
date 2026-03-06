@@ -8,4 +8,12 @@
 #(distance between light and sensor is 9.5 cm.)
 #when we decreased the distance form 9.5 to 5cm, R changed from 27 to ~90
 #color_data_20251017_154525.csv
+26run4.csv
+26run5.csv
+26run6.csv
+26run7.csv
+130run1.csv
+209run2.csv
+209run3.csv
+209run4.csv
 attempt1.csv
